@@ -29,6 +29,9 @@
        org.apache.solr.analysis package.
     -->
 
+    <!-- The LatLonType type is used for location based search -->
+    <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+
     <!-- The StrField type is not analyzed, but indexed/stored verbatim.
        - StrField and TextField support an optional compressThreshold which
        limits compression (if enabled in the derived fields) to values which
@@ -303,6 +306,11 @@
        boosting for the field, and saves some memory).  Only full-text
        fields or fields that need an index-time boost need norms.
    -->
+
+  <!-- The location fields -->
+
+  <dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="false"/>
+  <dynamicField name="locs_*"  type="location" indexed="true" stored="true"/>
 
 <!--
      The document IDs.
