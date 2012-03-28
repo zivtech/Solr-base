@@ -5,6 +5,10 @@ if [ ! $1 ] ; then
   exit
 fi
 
+if [ ! -d /opt/solr ] ; then
+ mkdir /opt/solr
+fi
+
 SOLRDIR=`readlink -f $0`
 # Absolute path this script is in.
 SOLRPATH=`dirname $SOLRDIR`
